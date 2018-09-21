@@ -31,6 +31,7 @@ export default function xhr (method, url, entity) {
         
         function onError(event) {
             console.error("Une erreur " + event.target.status + " s'est produite au cours de la réception du document.");
+            reject(this.status);
         }
         
         function onLoadEnd(event) {
