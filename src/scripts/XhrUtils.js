@@ -1,23 +1,27 @@
 export default function xhr (method, url, entity) {
     var req = new XMLHttpRequest();
     return new Promise(function(resolve, reject) {
-        XMLHttpRequest.responseType = "json";
-
         req.onprogress = onProgress;
         req.onerror = onError;
         req.onload = onLoad;
         req.onloadend = onLoadEnd;
+
         req.open( method, url );
+        req.setRequestHeader('Content-type','application/json; charset=utf-8');
         req.send(entity);
 
         function onLoad() {
             if (this.status === 200) {
                 console.log("Réponse reçue: %s", this.response);
                 resolve(JSON.parse(this.response));
+            } else if(this.status === 201) {
+                console.log("Créé: %s", this.response);
+                resolve("success");
             } else {
                 console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
                 reject(this.status);
             }
+            
         }
 
         function onProgress(event) {

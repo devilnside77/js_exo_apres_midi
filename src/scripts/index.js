@@ -1,8 +1,18 @@
 import '../styles/index.scss'; 
 import {Soatien, bareApi} from '../scripts/boostercamp.api';
+import Person from './Person';
+
+const listNom = document.getElementById("list_id");
+const nom = document.getElementById('nom_id');
+const prenom = document.getElementById('prenom_id');
+const matricule = document.getElementById('matricule_id');
 
 document.addEventListener('DOMContentLoaded',() => {
-    document.querySelector('button[id="button_nom_id"]').onclick=changeEventHandler;
+    document.querySelector('button[id="button_name_me_id"]').onclick=nameMeHandler;
+},false);
+
+document.addEventListener('DOMContentLoaded',() => {
+    document.querySelector('button[id="button_save_me_id"]').onclick=saveMeHandler;
 },false);
 
 function getSoatienObjs () {
@@ -29,7 +39,6 @@ function getSoatienObjs () {
     });
 }
 
-const listNom = document.getElementById("list_id");
 getSoatienObjs().then(data => {
     listNom.innerHTML = null;
 
@@ -39,16 +48,22 @@ getSoatienObjs().then(data => {
     }
 }).catch(() => {
     listNom.innerHTML = 'CONNEXION ERROR';
-});;
+});
 
-function changeEventHandler(event) {
-    const nom = document.getElementById('nom_id');
-    
-    listNom.innerHTML = null;
+function nameMeHandler() {
     if(!nom.value) {
         alert('Please tell me your name');
     } else {
         const resultText = document.getElementById('result_id');
-        resultText.textContent = `Nice to meet you ${nom.value}`;     
+        resultText.textContent = `Nice to meet you ${nom.value} ${prenom.value}`;     
     } 
+}
+
+function saveMeHandler() {
+    bareApi.postPersons(new Person(null, 'toto', 'tata')).then(data => {
+        console.log("creation : ", data);
+    });
+    bareApi.postSoatiens({matricule: "test"}).then(data => {
+        console.log("creation : ", data);
+    });
 }
