@@ -18,15 +18,18 @@
   "tools": [
     {
       "id": 1,
-      "name": "DESKTOP"
+      "name": "TV",
+      "htmlcode": "&#x1f4fa"
     },
     {
       "id": 2,
-      "name": "LAPTOP"
+      "name": "LAPTOP",
+      "htmlcode": "&#x1f4bb"
     },
     {
       "id": 3,
-      "name": "PENCIL"
+      "name": "KEYBOARD",
+      "htmlcode" : "&#9000"
     }
   ]
 }

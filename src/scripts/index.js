@@ -28,14 +28,13 @@ function getObjs () {
                 const soatienObj = new Soatien(soatien.id, soatien.name, soatien.firstname, soatien.license, soatien.toolid);
                 soatiensObj.push(soatienObj);
             }
-
+            
             for(let i = 0; i<tools.length; i++) {
                 let tool = tools[i];
-                const toolObj = new Tool(tool.id, tool.name);
+                const toolObj = new Tool(tool.id, tool.name, tool.htmlcode);
                 toolsObj.push(toolObj);
             }
-    
-            resolve(soatiensObj, toolsObj);
+            resolve([soatiensObj, toolsObj]);
             
         }).catch(error => {
             console.log(error);
@@ -44,11 +43,14 @@ function getObjs () {
     });
 }
 
-getObjs().then((soatiens, tools) => {
+getObjs().then((data) => {
+    let soatiens = data[0];
+    let tools = data[1];
+
     listNom.innerHTML = null;
 
     for (let I = 0; I < soatiens.length; I++) {
-         let nameList = "<li>" + soatiens[I].getFullName() + "</li>";
+         let nameList = `<li>${soatiens[I].getFullName()}  ${tools[soatiens[I].toolid-1].getToolImg()}</li>`;
         listNom.innerHTML += nameList;
     }
 }).catch((error) => {
