@@ -1,11 +1,11 @@
-function Person (id, nom, prenom) {
+function Person (id, name, firstname) {
     this.id = id;
-    this.nom = nom;
-    this.prenom = prenom;
+    this.name = name;
+    this.firstname = firstname;
 }
 
 Person.prototype.getFullName = function() {
-    return `${this.nom} ${this.prenom}`;
+    return `${this.name} ${this.firstname}`;
 };
 
 export default Person;

@@ -1,24 +1,32 @@
 {
-  "persons": [
-    {
-      "id": 1,
-      "nom": "The Legend",
-      "prenom": "Patrick"
-    },
-    {
-      "id": 3,
-      "nom": "Python",
-      "prenom": "Monthy"
-    }
-  ],
   "soatiens": [
     {
       "id": 1,
-      "matricule": "123456789"
+      "name": "The Legend",
+      "firstname": "Patrick",
+      "license": "123456789",
+      "toolid": 1
     },
     {
       "id": 3,
-      "matricule": "987654321"
+      "name": "Python",
+      "firstname": "Monthy",
+      "license": "987654321",
+      "toolid": 2
+    }
+  ],
+  "tools": [
+    {
+      "id": 1,
+      "name": "DESKTOP"
+    },
+    {
+      "id": 2,
+      "name": "LAPTOP"
+    },
+    {
+      "id": 3,
+      "name": "PENCIL"
     }
   ]
 }

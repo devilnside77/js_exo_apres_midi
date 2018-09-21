@@ -1,13 +1,14 @@
 import Person from '../scripts/Person';
 
-function Soatien (id, nom, prenom, matricule) {
-    Person.call(this, id, nom, prenom);
-    this.matricule = matricule;
+function Soatien (id, name, firstname, license, toolid) {
+    Person.call(this, id, name, firstname);
+    this.license = license;
+    this.toolid = toolid;
 }
 Soatien.prototype = Object.create(Person.prototype);
 
 Soatien.prototype.greeting = function() {
-    return `Bonjour je suis ${this.getFullName()} et mon matricule est ${this.matricule}`;
+    return `Bonjour je suis ${this.getFullName()} et ma license est ${this.license}`;
 };
 
 export default Soatien;

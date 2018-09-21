@@ -1,11 +1,10 @@
 import '../styles/index.scss'; 
-import {Soatien, bareApi} from '../scripts/boostercamp.api';
-import Person from './Person';
+import {Soatien, Tool, bareApi} from '../scripts/boostercamp.api';
 
 const listNom = document.getElementById("list_id");
-const nom = document.getElementById('nom_id');
-const prenom = document.getElementById('prenom_id');
-const matricule = document.getElementById('matricule_id');
+const name = document.getElementById('name_id');
+const firstname = document.getElementById('firstname_id');
+const license = document.getElementById('license_id');
 
 document.addEventListener('DOMContentLoaded',() => {
     document.querySelector('button[id="button_name_me_id"]').onclick=nameMeHandler;
@@ -15,55 +14,63 @@ document.addEventListener('DOMContentLoaded',() => {
     document.querySelector('button[id="button_save_me_id"]').onclick=saveMeHandler;
 },false);
 
-function getSoatienObjs () {
+function getObjs () {
     return new Promise((resolve, rejects) => {
-        Promise.all([bareApi.getSoatiens(), bareApi.getPersons()]).then(([responseSoatiens, responsePersons]) => {
-            let persons = responsePersons;
+        Promise.all([bareApi.getSoatiens(), bareApi.getTools()]).then(([responseSoatiens, responsetools]) => {
+            let tools = responsetools;
             let soatiens = responseSoatiens;
-            
+
             let soatiensObj = [];
+            let toolsObj =[];
     
-            for(let i=0; i<persons.length; i++) {
-                for(let y = 0; y<soatiens.length; y++) {
-                    let person = persons[i];
-                    let soatien = soatiens[y]; 
-                    if(person.id === soatien.id) {
-                        const soatienObj = new Soatien(person.id, person.nom, person.prenom, soatien.matricule);
-                        soatiensObj.push(soatienObj);
-                    }
-                }
+            for(let i = 0; i<soatiens.length; i++) {
+                let soatien = soatiens[i]; 
+                const soatienObj = new Soatien(soatien.id, soatien.name, soatien.firstname, soatien.license, soatien.toolid);
+                soatiensObj.push(soatienObj);
             }
-        
-            resolve(soatiensObj);
-        }).catch(error => rejects(error));
+
+            for(let i = 0; i<tools.length; i++) {
+                let tool = tools[i];
+                const toolObj = new Tool(tool.id, tool.name);
+                toolsObj.push(toolObj);
+            }
+    
+            resolve(soatiensObj, toolsObj);
+            
+        }).catch(error => {
+            console.log(error);
+            rejects(error);
+        });
     });
 }
 
-getSoatienObjs().then(data => {
+getObjs().then((soatiens, tools) => {
     listNom.innerHTML = null;
 
-    for (let I = 0; I < data.length; I++) {
-         let nameList = "<li>" + data[I].getFullName() + "</li>";
+    for (let I = 0; I < soatiens.length; I++) {
+         let nameList = "<li>" + soatiens[I].getFullName() + "</li>";
         listNom.innerHTML += nameList;
     }
-}).catch(() => {
+}).catch((error) => {
     listNom.innerHTML = 'CONNEXION ERROR';
+    console.log(error);
 });
 
 function nameMeHandler() {
-    if(!nom.value) {
+    if(!name.value) {
         alert('Please tell me your name');
     } else {
         const resultText = document.getElementById('result_id');
-        resultText.textContent = `Nice to meet you ${nom.value} ${prenom.value}`;     
+        resultText.textContent = `Nice to meet you ${name.value} ${firstname.value}`;     
     } 
 }
 
 function saveMeHandler() {
-    bareApi.postPersons(new Person(null, 'toto', 'tata')).then(data => {
-        console.log("creation : ", data);
-    });
-    bareApi.postSoatiens({matricule: "test"}).then(data => {
-        console.log("creation : ", data);
-    });
+    if(!name.value) {
+        alert('Please tell me your name');
+    } else {
+        bareApi.postSoatiens(new Soatien(null, name.value, firstname.value, license.value, 3)).then(data => {
+            console.log("creation : ", data);
+        });
+    }
 }
