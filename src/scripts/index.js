@@ -16,26 +16,19 @@ document.addEventListener('DOMContentLoaded',() => {
 
 function getObjs () {
     return new Promise((resolve, rejects) => {
-        Promise.all([bareApi.getSoatiens(), bareApi.getTools()]).then(([responseSoatiens, responsetools]) => {
-            let tools = responsetools;
-            let soatiens = responseSoatiens;
-
+        Promise.all([bareApi.getSoatiens(), bareApi.getTools()]).then(([responseSoatiens, responseTools]) => {
             let soatiensObj = [];
-            let toolsObj =[];
-    
-            for(let i = 0; i<soatiens.length; i++) {
-                let soatien = soatiens[i]; 
-                const soatienObj = new Soatien(soatien.id, soatien.name, soatien.firstname, soatien.license, soatien.toolid);
-                soatiensObj.push(soatienObj);
-            }
+            let toolsObj = [];
+
+            responseSoatiens.forEach(element => {
+                soatiensObj.push(Object.assign(new Soatien, element));
+            });
+
+            responseTools.forEach(element => {
+                toolsObj.push(Object.assign(new Tool, element));
+            });
             
-            for(let i = 0; i<tools.length; i++) {
-                let tool = tools[i];
-                const toolObj = new Tool(tool.id, tool.name, tool.htmlcode);
-                toolsObj.push(toolObj);
-            }
             resolve([soatiensObj, toolsObj]);
-            
         }).catch(error => {
             console.log(error);
             rejects(error);
@@ -49,8 +42,8 @@ getObjs().then((data) => {
 
     listNom.innerHTML = null;
 
-    for (let I = 0; I < soatiens.length; I++) {
-         let nameList = `<li>${soatiens[I].getFullName()}  ${tools[soatiens[I].toolid-1].getToolImg()}</li>`;
+    for (let i = 0; i < soatiens.length; i++) {
+         let nameList = `<li class="box">${soatiens[i].getFullName()}  ${tools[soatiens[i].toolid-1].getToolImg()}</li>`;
         listNom.innerHTML += nameList;
     }
 }).catch((error) => {

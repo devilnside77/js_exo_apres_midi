@@ -1,29 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>webpack starterkit</title>
-</head>
-<body>
-  <h1>webpack starter</h1>
-  <p>✨ A lightweight foundation for your next webpack based frontend project.</p>
-  <form novalidate>
-    <fieldset>
-      <label for="name_name">Put your name</label>
-      <input type="text" id="name_id" name="name_name">
-      <label for="firstname_name">Put your first name</label>
-      <input type="text" id="firstname_id" name="firstname_name">
-    <br>
-      <label for="license_name">Put your license</label>
-      <input type="text" id="license_id" name="license_name">
-    <br>
-      <button type="button" id="button_name_me_id" name="button_name_me_name">Name me</button>
-      <button type="button" id="button_save_me_id" name="button_save_me_name">Save me</button>
-    </fieldset>
-    <div>
-      <p id="result_id" name="result_name">You do not put your name</p>
-      <ul id="list_id"></ul>
-    </div>
-  </form>
-</body>
-</html>
+<div class="container">  
+    <form id="contact" action="" method="post" novalidate>
+      <h3><b>BoosterCamp</b> - Exercice 2</h3>
+      <h4>Revue des notions : </h4>
+      <ul>
+        <li class="smallbox">JSON</li>
+        <li class="smallbox">Objets</li>
+        <li class="smallbox">Closures</li>
+        <li class="smallbox">DOM</li>
+        <li class="smallbox">Evènements</li>
+        <li class="smallbox">Asynchrone</li>
+        <li class="smallbox">Modules</li>
+      </ul>
+      <fieldset>
+        <h2>Formulaire</h2>
+        <input id="name_id" placeholder="Nom" type="text" tabindex="1" required autofocus>
+      </fieldset>
+      <fieldset>
+          <input id="firstname_id" placeholder="Prénom" type="text" tabindex="2" required>
+      </fieldset>
+      <fieldset>
+          <input id="license_id" placeholder="Matricule" type="text" tabindex="3" required>
+      </fieldset>
+
+      <fieldset>
+        <button type='button' id="button_name_me_id">Say my name</button>
+        <button type='button' id="button_save_me_id">Sauvegarde</button>
+      </fieldset>
+
+      <fieldset>
+          <p id="result_id" name="result_name">Informations manquantes</p>
+          <h2>Resultat</h2>
+          <div class="container">
+              <ul id="list_id"></ul>
+          </div>
+      </fieldset>
+
+      <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a></p>
+    </form>
+  </div>
