@@ -2,6 +2,8 @@
 
 Par étape, arriver à l'application final :
 
+![Application finalisée](https://github.com/devilnside77/js_exo_apres_midi/blob/master/public/Capture.GIF)
+
 * Utiliser les selectors pour les différents champs (nom prenom license ainsi que le resultat et la liste) et pour les 2 boutons;
 * Faire dans l'index la méthode qui au clic de "say my name" retourne dans le champs avec id result_id le name et firstname;
 * Etendre Person pour créer un nouvel objet Soatien tel que présenté dans la base;
