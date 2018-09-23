@@ -1,3 +1,17 @@
+# Consigne
+
+Par étape, arriver à l'application final :
+
+* Utiliser les selectors pour les différents champs (nom prenom license ainsi que le resultat et la liste) et pour les 2 boutons;
+* Faire dans l'index la méthode qui au clic de "say my name" retourne dans le champs avec id result_id le name et firstname;
+* Etendre Person pour créer un nouvel objet Soatien tel que présenté dans la base;
+* Completer les XhrUtils avec une méthode onLoad et avec l'appel des requêtes;
+* Dans l'API faire les imports et exports pour que l'API recupère toutes les entities et exports l'ensemble des champs;
+* Importer dans l'index l'API et faire la méthode qui appelera les méthodes getSoatiens() et getTools() de l'API et retournera une promesse contenant un array de Soatien et un array de Tool;
+* Faire appel à la méthode précédente et afficher les resultats dans la liste;
+* Faire l'handler qui permet de post un soatien depuis le formulaire;
+
+
 # Webpack Frontend Starterkit
 
 A lightweight foundation for your next webpack based frontend project.
