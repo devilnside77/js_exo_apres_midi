@@ -1,5 +1,5 @@
 import '../styles/index.scss'; 
-import {Soatien, Tool, bareApi} from '../scripts/api/boostercamp.api';
+import {Soatien, Tool, bareApi} from './api/boostercamp.api';
 
 const listNom = document.getElementById("list_id");
 const name = document.getElementById('name_id');

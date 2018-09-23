@@ -1,6 +1,6 @@
-import Soatien from '../api/entities/Soatien';
-import Tool from '../api/entities/tool';
-import xhr from '../api/tools/XhrUtils';
+import Soatien from './entities/Soatien';
+import Tool from './entities/Tool';
+import xhr from './tools/xhrUtils';
 
 const bareApi = {
     'getTools' : () => xhr('GET', 'http://localhost:3000/tools', null),

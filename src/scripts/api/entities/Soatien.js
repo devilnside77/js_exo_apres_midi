@@ -1,4 +1,4 @@
-import Person from '../entities/Person';
+import Person from './Person';
 
 function Soatien (id, name, firstname, license, toolid) {
     Person.call(this, id, name, firstname);
