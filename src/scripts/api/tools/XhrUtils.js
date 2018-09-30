@@ -5,16 +5,7 @@ export default function xhr(method, url, entity) {
 
   return new Promise((resolve, reject) => {
     function onLoad() {
-      if (this.status === 200) {
-        console.log(`Réponse reçue : ${this.response}`);
-        resolve(JSON.parse(this.response));
-      } else if (this.status === 201) {
-        console.log(`Créé : ${this.response}`);
-        resolve('success');
-      } else {
-        console.log(`Status de la réponse : ${this.status} ${this.statusText}`);
-        reject(this.status);
-      }
+
     }
 
     function onProgress(event) {
@@ -41,8 +32,6 @@ export default function xhr(method, url, entity) {
     req.onload = onLoad;
     req.onloadend = onLoadEnd;
 
-    req.open(method, url);
     req.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    req.send(entity);
   });
 }
